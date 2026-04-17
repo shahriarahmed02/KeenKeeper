@@ -14,7 +14,7 @@ import Stats from './pages/Stats';
 // 2. Import the Provider, not just the Context
 import { TimelineProvider } from './context/TimelineProvider'; 
 import { Toaster } from 'react-hot-toast';
-import ErrorPage from './pages/Errorpage';
+import ErrorPage from './pages/ErrorPage';
 
 const router = createBrowserRouter([
   {
