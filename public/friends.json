@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "name": "Robert Downey Jr.",
+    "picture": "../src/assets/robertjr.webp",
+    "email": "rdj@starkindustries.com",
+    "days_since_contact": 5,
+    "status": "active",
+    "tags": ["Iron Man", "Legend"],
+    "bio": "Founding member of the Avengers. Loves high-tech suits and cheeseburgers.",
+    "goal": 7,
+    "next_due_date": "2026-04-20"
+  },
+  {
+    "id": 2,
+    "name": "Scarlett Johansson",
+    "picture": "../src/assets/Scarlett_Johansson.jpg",
+    "email": "scarlett@widow.com",
+    "days_since_contact": 15,
+    "status": "overdue",
+    "tags": ["Black Widow", "Top Star"],
+    "bio": "Expert in martial arts and espionage. Former S.H.I.E.L.D. agent.",
+    "goal": 10,
+    "next_due_date": "2026-04-12"
+  },
+  {
+    "id": 3,
+    "name": "Tom Cruise",
+    "picture": "../src/assets/tomcruise.webp",
+    "email": "tom@impossible.com",
+    "days_since_contact": 2,
+    "status": "active",
+    "tags": ["Action", "Stunt Master"],
+    "bio": "Does all his own stunts. Always on a mission to save the world.",
+    "goal": 14,
+    "next_due_date": "2026-04-30"
+  },
+  {
+    "id": 4,
+    "name": "Leonardo DiCaprio",
+    "picture": "../src/assets/leo.webp",
+    "email": "leo@environment.org",
+    "days_since_contact": 25,
+    "status": "overdue",
+    "tags": ["Oscar Winner", "Environmentalist"],
+    "bio": "Passionate about climate change. Still thinking about that spinning top.",
+    "goal": 20,
+    "next_due_date": "2026-04-10"
+  },
+  {
+    "id": 5,
+    "name": "Margot Robbie",
+    "picture": "../src/assets/Margot.webp",
+    "email": "margot@barbie.world",
+    "days_since_contact": 8,
+    "status": "active",
+    "tags": ["Barbie", "Producer"],
+    "bio": "Living her best life in a pink world. Skilled ice skater.",
+    "goal": 10,
+    "next_due_date": "2026-04-25"
+  },
+  {
+    "id": 6,
+    "name": "Brad Pitt",
+    "picture": "../src/assets/brad.webp",
+    "email": "brad@planb.com",
+    "days_since_contact": 30,
+    "status": "overdue",
+    "tags": ["Legend", "Style Icon"],
+    "bio": "First rule of Fight Club: You do not talk about Fight Club.",
+    "goal": 14,
+    "next_due_date": "2026-04-05"
+  },
+  {
+    "id": 7,
+    "name": "Zendaya",
+    "picture": "../src/assets/zendaya.webp",
+    "email": "zendaya@fashion.com",
+    "days_since_contact": 1,
+    "status": "active",
+    "tags": ["Gen-Z", "Spider-Man"],
+    "bio": "Fashion icon and amazing dancer. Great at keeping secrets.",
+    "goal": 7,
+    "next_due_date": "2026-04-23"
+  },
+  {
+    "id": 8,
+    "name": "Dwayne Johnson",
+    "picture": "../src/assets/rock.webp",
+    "email": "rock@teremana.com",
+    "days_since_contact": 4,
+    "status": "active",
+    "tags": ["The Rock", "Fitness"],
+    "bio": "Can you smell what he is cooking? Hardest worker in the room.",
+    "goal": 5,
+    "next_due_date": "2026-04-21"
+  },
+  {
+    "id": 9,
+    "name": "Angelina Jolie",
+    "picture": "../src/assets/jolie.webp",
+    "email": "angelina@humanitarian.org",
+    "days_since_contact": 12,
+    "status": "active",
+    "tags": ["Legend", "Humanitarian"],
+    "bio": "Dedicated to helping others around the world. Master of many skills.",
+    "goal": 15,
+    "next_due_date": "2026-04-28"
+  },
+  {
+    "id": 10,
+    "name": "Chris Hemsworth",
+    "picture": "../src/assets/thor.webp",
+    "email": "thor@asgard.com",
+    "days_since_contact": 45,
+    "status": "overdue",
+    "tags": ["Thor", "Action"],
+    "bio": "God of Thunder. Enjoys surfing and swinging big hammers.",
+    "goal": 30,
+    "next_due_date": "2026-03-30"
+  }
+]
