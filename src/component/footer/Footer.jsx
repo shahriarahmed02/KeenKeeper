@@ -1,19 +1,19 @@
 import React from 'react';
-// তোমার ইম্পোর্টগুলো একদম ঠিক আছে
+
 import Facebook from "../../assets/facebook.png"
 import Instagram from "../../assets/instagram.png"
 import Twitter from "../../assets/twitter.png"
 
 const Footer = () => {
   return (
-    <footer className="bg-[#1a3d32] text-white py-12 mt-auto">
+    <footer className="bg-[#244D3F] text-white py-8 mt-auto">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex flex-col items-center text-center space-y-6">
           
           {/* Brand Logo & Name */}
-          <div className="flex flex-col items-center">
-            <h2 className="text-4xl font-bold tracking-tight">KeenKeeper</h2>
-            <p className="mt-4 text-gray-300 max-w-md text-sm leading-relaxed">
+          <div className="flex flex-col items-center text-center mx-auto">
+            <h2 className="text-5xl font-bold tracking-tight">KeenKeeper</h2>
+            <p className="mt-4 text-gray-300 max-w-md text-sm  mx-auto  items-center">
               Your personal shelf of meaningful connections. Browse, tend, and nurture the relationships that matter most.
             </p>
           </div>

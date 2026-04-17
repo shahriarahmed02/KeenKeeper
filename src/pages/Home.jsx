@@ -19,7 +19,7 @@ const Home = () => {
         <p className="text-slate-500 max-w-xl mx-auto mb-6 text-sm">
           Your personal shelf of meaningful connections. Browse, tend, and nurture the relationships that matter most.
         </p>
-        <button className="btn bg-[#1a3d32] hover:bg-[#132d25] text-white border-none px-8">
+        <button className="btn bg-[#244D3F] hover:bg-[#132d25] text-white border-none px-8">
           <UserPlus size={18} className="mr-2" /> Add a Friend
         </button>
       </div>
