@@ -4,22 +4,23 @@ import { UserPlus } from 'lucide-react';
 
 const Home = () => {
   const [friends, setFriends] = useState([]);
+  const [loading, setLoading] = useState(true); // লোডিং স্টেট যোগ করা হয়েছে
 
   useEffect(() => {
+    setLoading(true);
     fetch('/friends.json')
       .then(res => res.json())
-      .then(data => setFriends(data));
+      .then(data => {
+        setFriends(data);
+        setLoading(false); // ডেটা পাওয়ার পর লোডিং ফলস
+      })
+      .catch(() => setLoading(false));
   }, []);
 
   const getDynamicStatus = (friend) => {
     const daysRemaining = friend.goal - friend.days_since_contact;
-    
     if (friend.status === 'overdue') return 'overdue';
-    
-   
     if (daysRemaining <= 2 && daysRemaining >= 0) return 'almost-due';
-    
-   
     return 'active';
   };
 
@@ -39,10 +40,10 @@ const Home = () => {
       {/* Stats Section */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
         {[
-          { label: 'Total Friends', value: friends.length },
-          { label: 'On Track', value: friends.filter(f => getDynamicStatus(f) === 'active').length },
-          { label: 'Need Attention', value: friends.filter(f => getDynamicStatus(f) === 'overdue').length },
-          { label: 'Almost Due', value: friends.filter(f => getDynamicStatus(f) === 'almost-due').length }
+          { label: 'Total Friends', value: loading ? "..." : friends.length },
+          { label: 'On Track', value: loading ? "..." : friends.filter(f => getDynamicStatus(f) === 'active').length },
+          { label: 'Need Attention', value: loading ? "..." : friends.filter(f => getDynamicStatus(f) === 'overdue').length },
+          { label: 'Almost Due', value: loading ? "..." : friends.filter(f => getDynamicStatus(f) === 'almost-due').length }
         ].map((stat, i) => (
           <div key={i} className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-center">
             <div className="text-2xl font-bold text-slate-800">{stat.value}</div>
@@ -51,49 +52,57 @@ const Home = () => {
         ))}
       </div>
 
-      {/* Friends Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {friends.map(friend => {
-          const currentStatus = getDynamicStatus(friend);
+      {/* Loading Spinner Logic */}
+      {loading ? (
+        <div className="flex flex-col items-center justify-center py-20">
+          <span className="loading loading-spinner loading-lg text-[#1a3d32]"></span>
+          <p className="mt-4 text-slate-400 text-sm animate-pulse font-medium">Loading friends list...</p>
+        </div>
+      ) : (
+        /* Friends Grid */
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {friends.map(friend => {
+            const currentStatus = getDynamicStatus(friend);
 
-          return (
-            <Link to={`/friend/${friend.id}`} key={friend.id} className="group">
-              <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center text-center transition-all hover:shadow-md hover:-translate-y-1">
-                
-                {/* Profile Image */}
-                <div className="relative">
-                  <img src={friend.picture} alt={friend.name} className="w-16 h-16 rounded-full object-cover mb-3 ring-2 ring-slate-50" />
+            return (
+              <Link to={`/friend/${friend.id}`} key={friend.id} className="group">
+                <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center text-center transition-all hover:shadow-md hover:-translate-y-1">
+                  
+                  {/* Profile Image */}
+                  <div className="relative">
+                    <img src={friend.picture} alt={friend.name} className="w-16 h-16 rounded-full object-cover mb-3 ring-2 ring-slate-50" />
+                  </div>
+                  
+                  {/* Name & Contact Days */}
+                  <h3 className="font-bold text-slate-800 text-sm mb-1">{friend.name}</h3>
+                  <p className="text-[10px] text-slate-400 mb-3">{friend.days_since_contact}d ago</p>
+                  
+                  {/* Figma Style Tags (e.g., WORK, FAMILY) */}
+                  <div className="flex flex-wrap justify-center gap-2 mb-4">
+                    {friend.tags.map(tag => (
+                      <span key={tag} className="px-2 py-0.5 bg-[#e6f7f0] text-[#1a3d32] text-[9px] font-bold rounded uppercase tracking-wider">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Status Badge */}
+                  <span className={`px-4 py-1 rounded-full text-[9px] font-bold uppercase tracking-wide shadow-sm transition-colors ${
+                    currentStatus === 'active' 
+                      ? 'bg-[#1a3d32] text-white' // On-Track
+                      : currentStatus === 'overdue' 
+                      ? 'bg-[#ff4d4d] text-white' // Overdue
+                      : 'bg-[#ffb347] text-white' // Almost Due
+                  }`}>
+                    {currentStatus === 'overdue' ? 'Overdue' : currentStatus === 'almost-due' ? 'Almost Due' : 'On-Track'}
+                  </span>
+
                 </div>
-                
-                {/* Name & Contact Days */}
-                <h3 className="font-bold text-slate-800 text-sm mb-1">{friend.name}</h3>
-                <p className="text-[10px] text-slate-400 mb-3">{friend.days_since_contact}d ago</p>
-                
-                {/* Figma Style Tags (e.g., WORK, FAMILY) */}
-                <div className="flex flex-wrap justify-center gap-2 mb-4">
-                  {friend.tags.map(tag => (
-                    <span key={tag} className="px-2 py-0.5 bg-[#e6f7f0] text-[#1a3d32] text-[9px] font-bold rounded uppercase tracking-wider">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Status Badge */}
-                <span className={`px-4 py-1 rounded-full text-[9px] font-bold uppercase tracking-wide shadow-sm transition-colors ${
-                  currentStatus === 'active' 
-                    ? 'bg-[#1a3d32] text-white' // On-Track
-                    : currentStatus === 'overdue' 
-                    ? 'bg-[#ff4d4d] text-white' // Overdue
-                    : 'bg-[#ffb347] text-white' // Almost Due
-                }`}>
-                  {currentStatus === 'overdue' ? 'Overdue' : currentStatus === 'almost-due' ? 'Almost Due' : 'On-Track'}
-                </span>
-
-              </div>
-            </Link>
-          );
-        })}
-      </div>
+              </Link>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };

@@ -1,6 +1,5 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { TimelineContext } from '../context/TimelineProvider';
-
 
 import CallIcon from "../assets/call.png";
 import VideoIcon from "../assets/video.png";
@@ -8,30 +7,48 @@ import TextIcon from "../assets/text.png";
 
 const Timeline = () => {
   const { timeline } = useContext(TimelineContext); 
-
   
+  
+  const [filterType, setFilterType] = useState('All');
+
   const interactionIcons = {
     Call: CallIcon,
     Video: VideoIcon,
     Text: TextIcon
   };
 
+  
+  const filteredTimeline = filterType === 'All' 
+    ? timeline 
+    : timeline.filter(log => log.type === filterType);
+
   return (
     <div className="max-w-4xl mx-auto px-4 py-12 bg-slate-50 min-h-screen">
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-bold text-slate-800 tracking-tight">Timeline</h1>
-        <select className="select select-sm border-slate-200 text-xs text-slate-500">
-          <option>Filter timeline</option>
+        
+        
+        <select 
+          className="select select-sm border-slate-200 text-xs text-slate-500 focus:outline-none focus:ring-1 focus:ring-[#1a3d32]"
+          value={filterType}
+          onChange={(e) => setFilterType(e.target.value)}
+        >
+          <option value="All">All Interactions</option>
+          <option value="Call">Call</option>
+          <option value="Text">Text</option>
+          <option value="Video">Video</option>
         </select>
       </div>
 
       <div className="space-y-4">
-        {timeline.length === 0 ? (
+        {filteredTimeline.length === 0 ? (
           <div className="bg-white p-10 rounded-2xl border border-dashed border-slate-200 text-center text-slate-400">
-            No interactions logged yet. Go to a friend's profile to start!
+            {filterType === 'All' 
+              ? "No interactions logged yet. Go to a friend's profile to start!" 
+              : `No ${filterType} interactions found.`}
           </div>
         ) : (
-          timeline.map((log) => (
+          filteredTimeline.map((log) => (
             <div 
               key={log.id} 
               className="bg-white p-5 rounded-xl border border-slate-100 shadow-sm flex items-center justify-between transition-hover hover:shadow-md"
@@ -53,9 +70,6 @@ const Timeline = () => {
                   <p className="text-[11px] text-slate-400 mt-0.5">{log.date}</p>
                 </div>
               </div>
-
-           
-             
             </div>
           ))
         )}

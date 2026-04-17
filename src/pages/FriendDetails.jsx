@@ -29,7 +29,7 @@ const FriendDetails = () => {
 
   const handleLog = (type) => {
     addLog(type, friend.name);
-    toast.success(`${type} recorded with ${friend.name}`);
+    toast.success(`${type} with ${friend.name}`);
   };
 
   return (
