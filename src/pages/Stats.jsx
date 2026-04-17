@@ -5,7 +5,7 @@ import { TimelineContext } from '../context/TimelineProvider';
 const Stats = () => {
   const { timeline } = useContext(TimelineContext);
 
-  // ডেটা প্রসেসিং
+ 
   const dataCounts = timeline.reduce((acc, log) => {
     acc[log.type] = (acc[log.type] || 0) + 1;
     return acc;
@@ -13,18 +13,18 @@ const Stats = () => {
 
   const chartData = [
     { name: 'Text', value: dataCounts['Text'] || 0, color: '#A855F7' },
-    { name: 'Call', value: dataCounts['Call'] || 0, color: '#1a3d32' },
+    { name: 'Call', value: dataCounts['Call'] || 0, color: '#244D3F' },
     { name: 'Video', value: dataCounts['Video'] || 0, color: '#22C55E' },
   ];
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-12 bg-slate-50 min-h-screen">
-      <h1 className="text-4xl font-bold text-slate-800 mb-10 border-b pb-4">
+      <h1 className="text-4xl font-bold text-[#244D3F] mb-10  pb-4">
         Friendship Analytics
       </h1>
 
       <div className="bg-white p-10 rounded-3xl shadow-sm border border-slate-100 max-w-4xl mx-auto">
-        <h3 className="text-slate-500 font-semibold mb-6 uppercase text-xs tracking-widest">
+        <h3 className="text-[#244D3F] font-semibold mb-6 uppercase text-xs tracking-widest">
           By Interaction Type
         </h3>
 
@@ -36,7 +36,7 @@ const Stats = () => {
           ) : (
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
-                {/* Tooltip যোগ করা হয়েছে হোভার ইফেক্টের জন্য */}
+             
                 <Tooltip 
                   contentStyle={{ borderRadius: '10px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
                   itemStyle={{ fontSize: '12px', fontWeight: 'bold' }}
@@ -49,14 +49,14 @@ const Stats = () => {
                   outerRadius={120}
                   paddingAngle={5}
                   dataKey="value"
-                  stroke="none" // এই লাইনটি কালো বর্ডার রিমুভ করবে
-                  style={{ outline: 'none' }} // ক্লিক করলে আসা নীল/কালো আউটলাইন বন্ধ করবে
+                  stroke="none"
+                  style={{ outline: 'none' }} 
                 >
                   {chartData.map((entry, index) => (
                     <Cell 
                       key={`cell-${index}`} 
                       fill={entry.color} 
-                      style={{ outline: 'none' }} // সেগমেন্টের আউটলাইন রিমুভ
+                      style={{ outline: 'none' }} 
                     />
                   ))}
                 </Pie>

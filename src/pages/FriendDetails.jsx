@@ -52,13 +52,13 @@ const FriendDetails = () => {
 
             <div className="flex justify-center gap-2 mt-4">
               {friend.tags.map(t => (
-                <span key={t} className="px-2 py-0.5 bg-[#e6f7f0] text-[#1a3d32] text-[10px] font-bold rounded uppercase">
+                <span key={t} className="px-2 py-0.5 bg-green-200 text-[#1a3d32] text-[10px] font-bold rounded uppercase">
                   {t}
                 </span>
               ))}
             </div>
             <p className="mt-6 text-sm text-slate-500 leading-relaxed italic">"{friend.bio}"</p>
-            <p className="text-xs text-blue-500 underline mt-4 cursor-pointer">Preferred email</p>
+            <p className="text-xs text-blue-500  mt-4 cursor-pointer">Preferred email</p>
           </div>
 
           <div className="flex flex-col gap-3">
@@ -72,42 +72,42 @@ const FriendDetails = () => {
         <div className="lg:col-span-8 space-y-6">
           <div className="grid grid-cols-3 gap-4">
             <div className="bg-white p-6 rounded-2xl border border-slate-100">
-              <div className="text-2xl font-bold">{friend.days_since_contact}</div>
+              <div className="text-2xl text-[#244D3F] font-bold">{friend.days_since_contact}</div>
               <div className="text-[10px] text-slate-400 uppercase font-bold">Days Since Contact</div>
             </div>
             <div className="bg-white p-6 rounded-2xl border border-slate-100">
-              <div className="text-2xl font-bold">{friend.goal}</div>
+              <div className="text-2xl text-[#244D3F] font-bold">{friend.goal}</div>
               <div className="text-[10px] text-slate-400 uppercase font-bold">Goal (Days)</div>
             </div>
             <div className="bg-white p-6 rounded-2xl border border-slate-100 text-[#1a3d32]">
-              <div className="text-xl font-bold leading-tight">Feb 27, 2026</div>
+              <div className="text-xl  text-[#244D3F] font-bold leading-tight">Feb 27, 2026</div>
               <div className="text-[10px] text-slate-400 uppercase font-bold mt-1">Next Due</div>
             </div>
           </div>
 
           <div className="bg-white p-8 rounded-2xl border border-slate-100">
             <div className="flex justify-between items-center mb-6">
-              <h3 className="font-bold text-slate-800">Relationship Goal</h3>
+              <h3 className="font-bold text-[#244D3F]">Relationship Goal</h3>
               <button className="btn btn-xs btn-ghost border border-slate-200"><Edit size={12} className="mr-1"/> Edit</button>
             </div>
-            <p className="text-sm text-slate-600">Connect every <span className="font-bold text-slate-800">{friend.goal} days</span></p>
+            <p className="text-sm text-slate-600">Connect every <span className="font-bold text-[#244D3F]">{friend.goal} days</span></p>
           </div>
 
           {/* Quick Check-In Section */}
           <div className="bg-white p-8 rounded-2xl border border-slate-100">
-            <h3 className="font-bold text-slate-800 mb-6">Quick Check-In</h3>
+            <h3 className="font-bold text-[#244D3F]">Quick Check-In</h3>
             <div className="grid grid-cols-3 gap-4">
-              <button onClick={() => handleLog('Call')} className="flex flex-col items-center p-6 border border-slate-100 rounded-xl hover:bg-slate-50 hover:border-[#1a3d32] transition-all group">
-                <Phone className="mb-2 text-slate-600 group-hover:text-[#1a3d32]" />
-                <span className="text-xs font-bold text-slate-600 group-hover:text-[#1a3d32]">Call</span>
+              <button onClick={() => handleLog('Call')} className="flex flex-col items-center p-6 border border-slate-100 rounded-xl hover:bg-slate-50 hover:border-[#244D3F] transition-all group">
+                <Phone className="mb-2 text-slate-600 group-hover:text-[#244D3F]" />
+                <span className="text-xs font-bold text-slate-600 group-hover:text-[#244D3F]">Call</span>
               </button>
-              <button onClick={() => handleLog('Text')} className="flex flex-col items-center p-6 border border-slate-100 rounded-xl hover:bg-slate-50 hover:border-[#1a3d32] transition-all group">
-                <MessageSquare className="mb-2 text-slate-600 group-hover:text-[#1a3d32]" />
-                <span className="text-xs font-bold text-slate-600 group-hover:text-[#1a3d32]">Text</span>
+              <button onClick={() => handleLog('Text')} className="flex flex-col items-center p-6 border border-slate-100 rounded-xl hover:bg-slate-50 hover:border-[#244D3F] transition-all group">
+                <MessageSquare className="mb-2 text-slate-600 group-hover:text-[#244D3F]" />
+                <span className="text-xs font-bold text-slate-600 group-hover:text-[#244D3F]">Text</span>
               </button>
-              <button onClick={() => handleLog('Video')} className="flex flex-col items-center p-6 border border-slate-100 rounded-xl hover:bg-slate-50 hover:border-[#1a3d32] transition-all group">
-                <Video className="mb-2 text-slate-600 group-hover:text-[#1a3d32]" />
-                <span className="text-xs font-bold text-slate-600 group-hover:text-[#1a3d32]">Video</span>
+              <button onClick={() => handleLog('Video')} className="flex flex-col items-center p-6 border border-slate-100 rounded-xl hover:bg-slate-50 hover:border-[#244D3F] transition-all group">
+                <Video className="mb-2 text-slate-600 group-hover:text-[#244D3F]" />
+                <span className="text-xs font-bold text-slate-600 group-hover:text-[#244D3F]">Video</span>
               </button>
             </div>
           </div>

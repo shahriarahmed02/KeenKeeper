@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Footer1 from "../../assets/logo-xl.png"
 import Facebook from "../../assets/facebook.png"
 import Instagram from "../../assets/instagram.png"
 import Twitter from "../../assets/twitter.png"
@@ -12,7 +12,8 @@ const Footer = () => {
           
           {/* Brand Logo & Name */}
           <div className="flex flex-col items-center text-center mx-auto">
-            <h2 className="text-5xl font-bold tracking-tight">KeenKeeper</h2>
+            <img src={Footer1} alt="logo" />
+            {/* <h2 className="text-5xl font-bold tracking-tight">KeenKeeper</h2> */}
             <p className="mt-4 text-gray-300 max-w-md text-sm  mx-auto  items-center">
               Your personal shelf of meaningful connections. Browse, tend, and nurture the relationships that matter most.
             </p>
