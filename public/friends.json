@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "Robert Downey Jr.",
-    "picture": "../src/assets/robertjr.webp",
+    "picture": "/public/robertjr.webp",
     "email": "rdj@starkindustries.com",
     "days_since_contact": 5,
     "status": "active",
