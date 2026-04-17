@@ -6,7 +6,7 @@ const Navbar = () => {
     // Active link styling function
     const activeStyle = ({ isActive }) => 
         isActive ? "bg-[#244D3F] text-white font-semibold p-2 flex items-center rounded-sm gap-2" 
-                 : "hover:text-[#244D3F] transition-all p-2 flex items-center gap-2";
+                 : "text-gray-700 hover:text-[#244D3F] transition-all p-2 flex items-center gap-2";
 
     const navItems = (
         <>
@@ -29,14 +29,16 @@ const Navbar = () => {
     );
 
     return (
-        <nav className="navbar bg-base-100 px-4 md:px-12 shadow-sm sticky top-0 z-50">
+     
+        <nav className="navbar bg-white !bg-white px-4 md:px-12 shadow-md sticky top-0 z-50">
             <div className="navbar-start">
-                {/* Mobile Hamburger Menu */}
                 <div className="dropdown">
-                    <label tabIndex={0} className="btn btn-ghost lg:hidden p-0 mr-2">
+               
+                    <label tabIndex={0} className="btn btn-ghost lg:hidden p-0 mr-2 text-gray-800">
                         <Menu size={24} />
                     </label>
-                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 gap-2 uppercase tracking-wider">
+                  
+                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow-xl bg-white !bg-white rounded-box w-52 gap-2 uppercase tracking-wider text-gray-800">
                         {navItems}
                     </ul>
                 </div>
@@ -54,5 +56,4 @@ const Navbar = () => {
         </nav>
     );
 };
-
 export default Navbar;
