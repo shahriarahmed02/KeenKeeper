@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
-import { TimelineContext } from '../context/TimelineProvider';
+import { TimelineContext } from '../context/TimelineProvider'; // পাথটি আপনার প্রজেক্ট অনুযায়ী চেক করে নিন
 import { Phone, MessageSquare, Video, Edit, Bell, Archive, Trash2 } from 'lucide-react';
 import toast from 'react-hot-toast';
 
@@ -17,6 +17,16 @@ const FriendDetails = () => {
 
   if (!friend) return <div className="p-20 text-center">Loading Profile...</div>;
 
+  // ডাইনামিক স্ট্যাটাস লজিক
+  const getDynamicStatus = () => {
+    const daysRemaining = friend.goal - friend.days_since_contact;
+    if (friend.status === 'overdue') return 'overdue';
+    if (daysRemaining <= 2 && daysRemaining >= 0) return 'almost-due';
+    return 'active';
+  };
+
+  const currentStatus = getDynamicStatus();
+
   const handleLog = (type) => {
     addLog(type, friend.name);
     toast.success(`${type} recorded with ${friend.name}`);
@@ -31,17 +41,29 @@ const FriendDetails = () => {
           <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 text-center">
             <img src={friend.picture} className="w-32 h-32 rounded-full mx-auto object-cover mb-4 border-4 border-white shadow-lg" />
             <h2 className="text-2xl font-bold text-slate-800">{friend.name}</h2>
-            <div className="badge badge-error badge-sm text-[10px] font-bold text-white mt-1 uppercase">Overdue</div>
+            
+            {/* ডাইনামিক কালার ব্যাজ */}
+            <div className={`badge badge-sm text-[10px] font-bold text-white mt-1 uppercase border-none py-2 px-3 ${
+              currentStatus === 'almost-due' ? 'bg-[#ffb347]' : 
+              currentStatus === 'overdue' ? 'bg-[#ff4d4d]' : 'bg-[#1a3d32]'
+            }`}>
+              {currentStatus === 'overdue' ? 'Overdue' : currentStatus === 'almost-due' ? 'Almost Due' : 'On-Track'}
+            </div>
+
             <div className="flex justify-center gap-2 mt-4">
-              {friend.tags.map(t => <span key={t} className="px-2 py-0.5 bg-slate-100 text-slate-500 text-[10px] font-bold rounded">{t}</span>)}
+              {friend.tags.map(t => (
+                <span key={t} className="px-2 py-0.5 bg-[#e6f7f0] text-[#1a3d32] text-[10px] font-bold rounded uppercase">
+                  {t}
+                </span>
+              ))}
             </div>
             <p className="mt-6 text-sm text-slate-500 leading-relaxed italic">"{friend.bio}"</p>
             <p className="text-xs text-blue-500 underline mt-4 cursor-pointer">Preferred email</p>
           </div>
 
           <div className="flex flex-col gap-3">
-            <button className="btn btn-outline border-slate-200 text-slate-600 normal-case flex justify-start gap-3"><Bell size={16}/> Snooze 2 Weeks</button>
-            <button className="btn btn-outline border-slate-200 text-slate-600 normal-case flex justify-start gap-3"><Archive size={16}/> Archive</button>
+            <button className="btn btn-outline border-slate-200 text-slate-600 normal-case flex justify-start gap-3 hover:bg-slate-100"><Bell size={16}/> Snooze 2 Weeks</button>
+            <button className="btn btn-outline border-slate-200 text-slate-600 normal-case flex justify-start gap-3 hover:bg-slate-100"><Archive size={16}/> Archive</button>
             <button className="btn btn-outline border-red-100 text-red-400 normal-case flex justify-start gap-3 hover:bg-red-50 hover:border-red-200"><Trash2 size={16}/> Delete</button>
           </div>
         </div>
@@ -57,7 +79,7 @@ const FriendDetails = () => {
               <div className="text-2xl font-bold">{friend.goal}</div>
               <div className="text-[10px] text-slate-400 uppercase font-bold">Goal (Days)</div>
             </div>
-            <div className="bg-white p-6 rounded-2xl border border-slate-100 text-green-600">
+            <div className="bg-white p-6 rounded-2xl border border-slate-100 text-[#1a3d32]">
               <div className="text-xl font-bold leading-tight">Feb 27, 2026</div>
               <div className="text-[10px] text-slate-400 uppercase font-bold mt-1">Next Due</div>
             </div>
@@ -68,24 +90,24 @@ const FriendDetails = () => {
               <h3 className="font-bold text-slate-800">Relationship Goal</h3>
               <button className="btn btn-xs btn-ghost border border-slate-200"><Edit size={12} className="mr-1"/> Edit</button>
             </div>
-            <p className="text-sm text-slate-600">Connect every <span className="font-bold text-slate-800">30 days</span></p>
+            <p className="text-sm text-slate-600">Connect every <span className="font-bold text-slate-800">{friend.goal} days</span></p>
           </div>
 
           {/* Quick Check-In Section */}
           <div className="bg-white p-8 rounded-2xl border border-slate-100">
             <h3 className="font-bold text-slate-800 mb-6">Quick Check-In</h3>
             <div className="grid grid-cols-3 gap-4">
-              <button onClick={() => handleLog('Call')} className="flex flex-col items-center p-6 border border-slate-100 rounded-xl hover:bg-slate-50 transition-colors">
-                <Phone className="mb-2 text-slate-600" />
-                <span className="text-xs font-bold text-slate-600">Call</span>
+              <button onClick={() => handleLog('Call')} className="flex flex-col items-center p-6 border border-slate-100 rounded-xl hover:bg-slate-50 hover:border-[#1a3d32] transition-all group">
+                <Phone className="mb-2 text-slate-600 group-hover:text-[#1a3d32]" />
+                <span className="text-xs font-bold text-slate-600 group-hover:text-[#1a3d32]">Call</span>
               </button>
-              <button onClick={() => handleLog('Text')} className="flex flex-col items-center p-6 border border-slate-100 rounded-xl hover:bg-slate-50 transition-colors">
-                <MessageSquare className="mb-2 text-slate-600" />
-                <span className="text-xs font-bold text-slate-600">Text</span>
+              <button onClick={() => handleLog('Text')} className="flex flex-col items-center p-6 border border-slate-100 rounded-xl hover:bg-slate-50 hover:border-[#1a3d32] transition-all group">
+                <MessageSquare className="mb-2 text-slate-600 group-hover:text-[#1a3d32]" />
+                <span className="text-xs font-bold text-slate-600 group-hover:text-[#1a3d32]">Text</span>
               </button>
-              <button onClick={() => handleLog('Video')} className="flex flex-col items-center p-6 border border-slate-100 rounded-xl hover:bg-slate-50 transition-colors">
-                <Video className="mb-2 text-slate-600" />
-                <span className="text-xs font-bold text-slate-600">Video</span>
+              <button onClick={() => handleLog('Video')} className="flex flex-col items-center p-6 border border-slate-100 rounded-xl hover:bg-slate-50 hover:border-[#1a3d32] transition-all group">
+                <Video className="mb-2 text-slate-600 group-hover:text-[#1a3d32]" />
+                <span className="text-xs font-bold text-slate-600 group-hover:text-[#1a3d32]">Video</span>
               </button>
             </div>
           </div>
