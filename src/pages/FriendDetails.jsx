@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
-import { TimelineContext } from '../context/TimelineProvider'; // পাথটি আপনার প্রজেক্ট অনুযায়ী চেক করে নিন
+import { TimelineContext } from '../context/TimelineProvider'; 
 import { Phone, MessageSquare, Video, Edit, Bell, Archive, Trash2 } from 'lucide-react';
 import toast from 'react-hot-toast';
 
@@ -17,7 +17,7 @@ const FriendDetails = () => {
 
   if (!friend) return <div className="p-20 text-center">Loading Profile...</div>;
 
-  // ডাইনামিক স্ট্যাটাস লজিক
+ 
   const getDynamicStatus = () => {
     const daysRemaining = friend.goal - friend.days_since_contact;
     if (friend.status === 'overdue') return 'overdue';
@@ -42,7 +42,7 @@ const FriendDetails = () => {
             <img src={friend.picture} className="w-32 h-32 rounded-full mx-auto object-cover mb-4 border-4 border-white shadow-lg" />
             <h2 className="text-2xl font-bold text-slate-800">{friend.name}</h2>
             
-            {/* ডাইনামিক কালার ব্যাজ */}
+         {/* Dynamic color Badge */}
             <div className={`badge badge-sm text-[10px] font-bold text-white mt-1 uppercase border-none py-2 px-3 ${
               currentStatus === 'almost-due' ? 'bg-[#ffb347]' : 
               currentStatus === 'overdue' ? 'bg-[#ff4d4d]' : 'bg-[#1a3d32]'

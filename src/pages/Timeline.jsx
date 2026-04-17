@@ -37,7 +37,7 @@ const Timeline = () => {
               className="bg-white p-5 rounded-xl border border-slate-100 shadow-sm flex items-center justify-between transition-hover hover:shadow-md"
             >
               <div className="flex items-center gap-4">
-                {/* ডাইনামিক আইকন */}
+                
                 <div className="w-10 h-10 bg-slate-50 rounded-lg flex items-center justify-center border border-slate-50">
                   <img 
                     src={interactionIcons[log.type]} 

@@ -10,7 +10,7 @@ export const TimelineProvider = ({ children }) => {
             id: Date.now(),
             date: new Date().toLocaleString(),
             type,
-            friendName, // বন্ধুটির নাম আলাদাভাবে রাখলে টাইমলাইনে দেখাতে সুবিধা হবে
+            friendName, 
             title: `${type} with ${friendName}`,
         };
         setTimeline([newEntry, ...timeline]);

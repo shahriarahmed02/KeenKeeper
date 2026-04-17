@@ -11,17 +11,15 @@ const Home = () => {
       .then(data => setFriends(data));
   }, []);
 
-  // হেল্পার ফাংশন: বর্তমান ডাইনামিক স্ট্যাটাস বের করার জন্য
   const getDynamicStatus = (friend) => {
     const daysRemaining = friend.goal - friend.days_since_contact;
     
-    // যদি অলরেডি ওভারডিউ থাকে
     if (friend.status === 'overdue') return 'overdue';
     
-    // যদি ২ দিন বা তার কম বাকি থাকে (Almost Due)
+   
     if (daysRemaining <= 2 && daysRemaining >= 0) return 'almost-due';
     
-    // অন্যথায় Active/On-Track
+   
     return 'active';
   };
 
